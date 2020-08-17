@@ -15,12 +15,12 @@ public class DominoPiece implements Comparable<DominoPiece>{
     private Integer leftValue;
     private Integer rightValue;
 
-    public DominoPiece(Integer leftValue, Integer rightValue) {
+    public DominoPiece(final Integer leftValue, final Integer rightValue) {
         this.leftValue = leftValue;
         this.rightValue = rightValue;
     }
 
-    public int compareTo(DominoPiece o) {
+    public int compareTo(final DominoPiece o) {
         return this.leftValue * 10 + this.rightValue - o.getLeftValue() * 10 - o.getRightValue();
     }
 

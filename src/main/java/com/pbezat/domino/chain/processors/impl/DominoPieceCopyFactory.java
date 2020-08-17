@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 public class DominoPieceCopyFactory implements IDominoPieceCopyFactory
 {
     @Override
-    public DominoChain deepCopy(DominoChain chainToCopy) {
-        DominoChain result = new DominoChain();
+    public DominoChain deepCopy(final DominoChain chainToCopy) {
+        final DominoChain result = new DominoChain();
         result.getChain().addAll(chainToCopy.getChain());
         return result;
     }

@@ -11,12 +11,12 @@ public class DominoChainConnector implements IDominoChainConnector
 {
     private final IDominoPieceCopyFactory copyFactory;
 
-    public DominoChainConnector(IDominoPieceCopyFactory copyFactory) {
+    public DominoChainConnector(final IDominoPieceCopyFactory copyFactory) {
         this.copyFactory = copyFactory;
     }
 
     @Override
-    public DominoChain connect(DominoChain currentChain, DominoPiece other) {
+    public DominoChain connect(final DominoChain currentChain, final DominoPiece other) {
         DominoChain result = copyFactory.deepCopy(currentChain);
 
         if (other.getLeftValue().equals(result.getRightValue())) {

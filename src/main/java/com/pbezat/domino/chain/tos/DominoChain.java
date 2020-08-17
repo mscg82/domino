@@ -24,13 +24,13 @@ public class DominoChain implements Comparable<DominoChain>
         chain = new LinkedList<>();
     }
 
-    public DominoChain(DominoPiece startingPiece) {
+    public DominoChain(final DominoPiece startingPiece) {
         chain = new LinkedList<>();
         chain.add(startingPiece);
     }
 
     @Override
-    public int compareTo(DominoChain other) {
+    public int compareTo(final DominoChain other) {
         return calculateValue(this) - calculateValue(other);
     }
 

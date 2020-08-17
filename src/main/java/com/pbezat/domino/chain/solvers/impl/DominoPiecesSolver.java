@@ -28,18 +28,18 @@ public class DominoPiecesSolver implements IDominoPiecesSolver
     private final IDominoChainConnector chainConnector;
 
     @Autowired
-    public DominoPiecesSolver(IDominoChainConnector chainConnector) {
+    public DominoPiecesSolver(final IDominoChainConnector chainConnector) {
         this.chainConnector = chainConnector;
     }
 
-    public DominoChain solve(DominoPiece startingPiece, List<DominoPiece> dominoes) {
-        Map<Integer, List<DominoChain>> chains = initChains(startingPiece);
-        List<DominoChain> allChains = new ArrayList<>();
+    public DominoChain solve(final DominoPiece startingPiece, final List<DominoPiece> dominoes) {
+        final Map<Integer, List<DominoChain>> chains = initChains(startingPiece);
+        final List<DominoChain> allChains = new ArrayList<>();
 
         for (int chainSize = 1; chainSize <= dominoes.size(); chainSize++) {
-            List<DominoChain> currentLengthChains = chains.get(chainSize);
+            final List<DominoChain> currentLengthChains = chains.get(chainSize);
 
-            List<DominoChain> nextLengthChains = currentLengthChains.stream()
+            final List<DominoChain> nextLengthChains = currentLengthChains.stream()
                 .map((chain) -> findNextChains(chain, dominoes))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
@@ -50,45 +50,47 @@ public class DominoPiecesSolver implements IDominoPiecesSolver
             chains.put(chainSize + 1, nextLengthChains);
         }
 
-        DominoChain highestValueChain = findHighestValueChain(allChains);
+        final DominoChain highestValueChain = findHighestValueChain(allChains);
 
         logger.info("Solved. Highest value of chain: " + calculateValue(highestValueChain) + ". chain: " + highestValueChain);
         return highestValueChain;
     }
 
-    private Set<DominoChain> findNextChains(DominoChain currentChain, List<DominoPiece> dominoes) {
-        Set<DominoChain> nextChainSet = new HashSet<>();
+    private Set<DominoChain> findNextChains(final DominoChain currentChain, final List<DominoPiece> dominoes) {
+        final Set<DominoChain> nextChainSet = new HashSet<>();
 
-        for (DominoPiece dominoPiece : dominoes) {
+        for (final DominoPiece dominoPiece : dominoes) {
 
             if (!currentChain.getChain().contains(dominoPiece)) {
-                DominoChain nextChain = chainConnector.connect(currentChain, dominoPiece);
+                final DominoChain nextChain = chainConnector.connect(currentChain, dominoPiece);
                 nextChainSet.add(nextChain);
             }
         }
         return nextChainSet;
     };
 
-    private DominoChain findHighestValueChain(List<DominoChain> allChains)
+    private DominoChain findHighestValueChain(final List<DominoChain> allChains)
     {
-        Iterator<DominoChain> iterator = allChains.iterator();
+        final Iterator<DominoChain> iterator = allChains.iterator();
         DominoChain highestChain = iterator.next();
+        int highestChainValue = calculateValue(highestChain);
 
         while (iterator.hasNext()) {
             DominoChain nextChain = iterator.next();
 
-            if (calculateValue(nextChain) > calculateValue(highestChain)) {
+            if (calculateValue(nextChain) > highestChainValue) {
                 highestChain = nextChain;
+                highestChainValue = calculateValue(highestChain);
             }
         }
 
         return highestChain;
     }
 
-    private Map<Integer, List<DominoChain>> initChains(DominoPiece startingPiece) {
-        Map<Integer, List<DominoChain>> chains = new HashMap<>();
+    private Map<Integer, List<DominoChain>> initChains(final DominoPiece startingPiece) {
+        final Map<Integer, List<DominoChain>> chains = new HashMap<>();
 
-        List<DominoChain> chainsList = new ArrayList<>();
+        final List<DominoChain> chainsList = new ArrayList<>();
         chainsList.add(new DominoChain(startingPiece));
         chainsList.add(new DominoChain(startingPiece.swap()));
 

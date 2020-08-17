@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 class DominoPiecesValueChecker {
-    void checkPieceValue(Integer leftValue, Integer rightValue) {
+    void checkPieceValue(final Integer leftValue, final Integer rightValue) {
         if (leftValue == null) {
             throw new IncorrectParameterException("Domino piece: first value is empty.");
         }

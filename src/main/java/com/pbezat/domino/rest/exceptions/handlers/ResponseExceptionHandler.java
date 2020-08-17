@@ -14,14 +14,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {IncorrectParameterException.class})
-    protected ResponseEntity<Object> handleIncorrectParameter(IncorrectParameterException ex, WebRequest request) {
-        String bodyOfResponse = "Provided input parameters are incorrect.";
+    protected ResponseEntity<Object> handleIncorrectParameter(final IncorrectParameterException ex, final WebRequest request) {
+        final String bodyOfResponse = "Provided input parameters are incorrect.";
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(value = {ParametersMissingException.class})
-    protected ResponseEntity<Object> handleMissingParameter(ParametersMissingException ex, WebRequest request) {
-        ParameterMissingResponseTO responseTO = new ParameterMissingResponseTO("There are some parameters missing in the request", ex.getParameterNames());
+    protected ResponseEntity<Object> handleMissingParameter(final ParametersMissingException ex, final WebRequest request) {
+        final ParameterMissingResponseTO responseTO = new ParameterMissingResponseTO("There are some parameters missing in the request", ex.getParameterNames());
         return handleExceptionInternal(ex, responseTO, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

@@ -5,5 +5,5 @@ import com.pbezat.domino.chain.tos.DominoPiece;
 
 public interface IDominoChainConnector
 {
-    DominoChain connect(DominoChain currentChain, DominoPiece other);
+    DominoChain connect(final DominoChain currentChain, final DominoPiece other);
 }

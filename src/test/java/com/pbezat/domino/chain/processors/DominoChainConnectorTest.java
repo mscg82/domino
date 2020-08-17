@@ -14,22 +14,22 @@ public class DominoChainConnectorTest {
     @Test
     public void simpleConnectPiecesTest()
     {
-        DominoPiece d1 = new DominoPiece(1, 2);
+        final DominoPiece d1 = new DominoPiece(1, 2);
 
-        DominoChain chain = new DominoChain();
+        final DominoChain chain = new DominoChain();
         chain.getChain().add(d1);
 
-        DominoChain deepCopiedChain = new DominoChain();
+        final DominoChain deepCopiedChain = new DominoChain();
         deepCopiedChain.getChain().add(d1);
 
-        DominoPiece d2 = new DominoPiece(2, 3);
+        final DominoPiece d2 = new DominoPiece(2, 3);
 
-        IDominoPieceCopyFactory copyFactory = Mockito.mock(DominoPieceCopyFactory.class);
+        final IDominoPieceCopyFactory copyFactory = Mockito.mock(DominoPieceCopyFactory.class);
         Mockito.when(copyFactory.deepCopy(chain)).thenReturn(deepCopiedChain);
 
-        IDominoChainConnector chainConnector = new DominoChainConnector(copyFactory);
+        final IDominoChainConnector chainConnector = new DominoChainConnector(copyFactory);
 
-        DominoChain connected = chainConnector.connect(chain, d2);
+        final DominoChain connected = chainConnector.connect(chain, d2);
         assertEquals(connected.getChain().size(), 2);
     }
 }

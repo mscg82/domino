@@ -13,13 +13,13 @@ public class DominoService implements IDominoService
     private final DominoPiecesValidator dominoPiecesValidator;
     private final IDominoPiecesChainProcessor IDominoPiecesChainProcessor;
 
-    public DominoService(DominoPiecesValidator dominoPiecesValidator, IDominoPiecesChainProcessor IDominoPiecesChainProcessor) {
+    public DominoService(final DominoPiecesValidator dominoPiecesValidator, final IDominoPiecesChainProcessor IDominoPiecesChainProcessor) {
         this.dominoPiecesValidator = dominoPiecesValidator;
         this.IDominoPiecesChainProcessor = IDominoPiecesChainProcessor;
     }
 
     @Override
-    public DominoChain calculateChain(DominoCalculateChainRequest calculateChainRequest) {
+    public DominoChain calculateChain(final DominoCalculateChainRequest calculateChainRequest) {
         dominoPiecesValidator.validatePieces(calculateChainRequest);
 
         return IDominoPiecesChainProcessor.findHighestChain(calculateChainRequest.getStartingPiece(), calculateChainRequest.getPieces());

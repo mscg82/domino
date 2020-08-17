@@ -8,13 +8,13 @@ import static com.pbezat.domino.chain.tos.DominoPiece.MIN_VALUE;
 
 @Component
 class DominoPiecesRangeChecker {
-    void checkPiecesRange(Integer firstValue, Integer secondValue) {
+    void checkPiecesRange(final Integer firstValue, final Integer secondValue) {
         if (isPieceInIncorrectRange(firstValue) || isPieceInIncorrectRange(secondValue)) {
             throw new IncorrectParameterException(String.format("Domino piece: value is not in range(%d, %d).", MIN_VALUE, MAX_VALUE));
         }
     }
 
-    private boolean isPieceInIncorrectRange(Integer firstValue) {
+    private boolean isPieceInIncorrectRange(final Integer firstValue) {
         return (firstValue < MIN_VALUE || firstValue > MAX_VALUE);
     }
 }

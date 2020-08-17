@@ -27,16 +27,16 @@ public class DominoPiecesSolverTest
     @Test
     public void simple_two_matching_one_not_matching() {
 
-        DominoPiece d1 = new DominoPiece(1, 2);
-        DominoPiece d2 = new DominoPiece(2, 3);
-        DominoPiece d3 = new DominoPiece(4, 5);
+        final DominoPiece d1 = new DominoPiece(1, 2);
+        final DominoPiece d2 = new DominoPiece(2, 3);
+        final DominoPiece d3 = new DominoPiece(4, 5);
 
-        List<DominoPiece> dominoPieces = new ArrayList<>();
+        final List<DominoPiece> dominoPieces = new ArrayList<>();
         dominoPieces.add(d2);
         dominoPieces.add(d3);
 
         //real execution
-        DominoChain solvedChain = solver.solve(d1, dominoPieces);
+        final DominoChain solvedChain = solver.solve(d1, dominoPieces);
 
         //verification
         assertEquals(2, solvedChain.getChain().size());
@@ -44,15 +44,15 @@ public class DominoPiecesSolverTest
 
     @Test
     public void test_solve_shorter_chain_higher_value() {
-        DominoPiece d1 = new DominoPiece(1, 2);
-        DominoPiece d2 = new DominoPiece(2, 9);
-        DominoPiece d3 = new DominoPiece(9, 0);
-        DominoPiece d4 = new DominoPiece(2, 3);
-        DominoPiece d5 = new DominoPiece(3, 1);
-        DominoPiece d6 = new DominoPiece(1, 4);
-        DominoPiece d7 = new DominoPiece(4, 2);
+        final DominoPiece d1 = new DominoPiece(1, 2);
+        final DominoPiece d2 = new DominoPiece(2, 9);
+        final DominoPiece d3 = new DominoPiece(9, 0);
+        final DominoPiece d4 = new DominoPiece(2, 3);
+        final DominoPiece d5 = new DominoPiece(3, 1);
+        final DominoPiece d6 = new DominoPiece(1, 4);
+        final DominoPiece d7 = new DominoPiece(4, 2);
 
-        List<DominoPiece> dominoPieces = new ArrayList<>();
+        final List<DominoPiece> dominoPieces = new ArrayList<>();
         dominoPieces.add(d2);
         dominoPieces.add(d3);
         dominoPieces.add(d4);
@@ -61,7 +61,7 @@ public class DominoPiecesSolverTest
         dominoPieces.add(d7);
 
         //real execution
-        DominoChain solvedChain = solver.solve(d1, dominoPieces);
+        final DominoChain solvedChain = solver.solve(d1, dominoPieces);
 
         //verification
         assertEquals(solvedChain.getChain().size(), 7);

@@ -1,7 +1,7 @@
 package com.pbezat.domino.rest.exceptions;
 
 public class IncorrectParameterException extends RuntimeException {
-    public IncorrectParameterException(String message) {
+    public IncorrectParameterException(final String message) {
         super(message);
     }
 }

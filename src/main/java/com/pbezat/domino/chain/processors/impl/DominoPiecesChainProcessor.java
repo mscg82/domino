@@ -15,12 +15,12 @@ public class DominoPiecesChainProcessor implements IDominoPiecesChainProcessor
     private final IDominoPiecesSolver solver;
 
     @Autowired
-    public DominoPiecesChainProcessor(IDominoPiecesSolver solver) {
+    public DominoPiecesChainProcessor(final IDominoPiecesSolver solver) {
         this.solver = solver;
     }
 
     @Override
-    public DominoChain findHighestChain(DominoPiece startingPiece, List<DominoPiece> pieces) {
+    public DominoChain findHighestChain(final DominoPiece startingPiece, final List<DominoPiece> pieces) {
         return solver.solve(startingPiece, pieces);
     }
 }

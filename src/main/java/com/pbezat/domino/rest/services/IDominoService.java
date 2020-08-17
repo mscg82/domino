@@ -4,5 +4,5 @@ import com.pbezat.domino.chain.tos.DominoChain;
 import com.pbezat.domino.rest.tos.requests.DominoCalculateChainRequest;
 
 public interface IDominoService {
-    DominoChain calculateChain(DominoCalculateChainRequest calculateChainRequest);
+    DominoChain calculateChain(final DominoCalculateChainRequest calculateChainRequest);
 }

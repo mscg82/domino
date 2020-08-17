@@ -6,12 +6,12 @@ import com.pbezat.domino.chain.tos.DominoPiece;
 import java.util.Iterator;
 
 public class DominoChainValueCalculator {
-    public static int calculateValue(DominoChain chain) {
+    public static int calculateValue(final DominoChain chain) {
         int value = 0;
 
-        Iterator<DominoPiece> iterator = chain.getChain().iterator();
+        final Iterator<DominoPiece> iterator = chain.getChain().iterator();
         while (iterator.hasNext()) {
-            DominoPiece dominoPiece = iterator.next();
+            final DominoPiece dominoPiece = iterator.next();
 
             if (iterator.hasNext()) {
                 value += dominoPiece.getRightValue();

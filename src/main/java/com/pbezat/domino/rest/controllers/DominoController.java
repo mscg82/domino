@@ -14,12 +14,12 @@ public class DominoController {
     private final DominoService dominoService;
 
     @Autowired
-    public DominoController(DominoService dominoService) {
+    public DominoController(final DominoService dominoService) {
         this.dominoService = dominoService;
     }
 
     @PostMapping("/calculate")
-    public DominoChain calculateChain(@RequestBody DominoCalculateChainRequest calculateChainRequest) {
+    public DominoChain calculateChain(@RequestBody final DominoCalculateChainRequest calculateChainRequest) {
         return dominoService.calculateChain(calculateChainRequest);
     }
 }

@@ -14,12 +14,12 @@ import javax.servlet.ServletRegistration;
 public class SpringWebInitializer implements WebApplicationInitializer
 {
     @Override
-    public void onStartup(ServletContext container) {
-        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+    public void onStartup(final ServletContext container) {
+        final AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.scan("com.pbezat");
         container.addListener(new ContextLoaderListener(context));
 
-        ServletRegistration.Dynamic dispatcher =
+        final ServletRegistration.Dynamic dispatcher =
             container.addServlet("mvc", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");

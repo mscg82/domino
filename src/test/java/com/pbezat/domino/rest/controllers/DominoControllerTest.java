@@ -10,11 +10,11 @@ import static org.mockito.Mockito.times;
 public class DominoControllerTest {
     @Test
     public void testController() {
-        DominoService dominoService = Mockito.mock(DominoService.class);
+        final DominoService dominoService = Mockito.mock(DominoService.class);
 
-        DominoCalculateChainRequest calculateChainRequest = new DominoCalculateChainRequest();
+        final DominoCalculateChainRequest calculateChainRequest = new DominoCalculateChainRequest();
 
-        DominoController controller = new DominoController(dominoService);
+        final DominoController controller = new DominoController(dominoService);
         controller.calculateChain(calculateChainRequest);
 
         Mockito.verify(dominoService, times(1)).calculateChain(calculateChainRequest);

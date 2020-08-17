@@ -35,14 +35,14 @@ public class DominoServiceTest {
 
     @Test
     public void simpleTest() {
-        DominoPiece d1 = new DominoPiece(1, 2);
-        DominoPiece d2 = new DominoPiece(2, 4);
+        final DominoPiece d1 = new DominoPiece(1, 2);
+        final DominoPiece d2 = new DominoPiece(2, 4);
 
-        ArrayList<DominoPiece> dominoPieces = new ArrayList<>();
+        final ArrayList<DominoPiece> dominoPieces = new ArrayList<>();
         dominoPieces.add(d1);
         dominoPieces.add(d2);
 
-        DominoCalculateChainRequest request = new DominoCalculateChainRequest();
+        final DominoCalculateChainRequest request = new DominoCalculateChainRequest();
         request.setPieces(dominoPieces);
         request.setStartingPiece(d1);
 

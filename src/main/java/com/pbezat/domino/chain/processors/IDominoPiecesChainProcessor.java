@@ -6,5 +6,5 @@ import com.pbezat.domino.chain.tos.DominoPiece;
 import java.util.List;
 
 public interface IDominoPiecesChainProcessor {
-    DominoChain findHighestChain(DominoPiece startingPiece, List<DominoPiece> pieces);
+    DominoChain findHighestChain(final DominoPiece startingPiece, final List<DominoPiece> pieces);
 }

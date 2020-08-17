@@ -11,9 +11,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class ParametersMissingException extends RuntimeException {
-    private EnumSet<ParameterName> parameterNames;
+    private final EnumSet<ParameterName> parameterNames;
 
-    public ParametersMissingException(ParameterName parameterName) {
+    public ParametersMissingException(final ParameterName parameterName) {
         this.parameterNames = EnumSet.of(parameterName);
     }
 }

@@ -11,6 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ParameterMissingResponseTO
 {
-    private String message;
-    private EnumSet<ParameterName> missingParameters;
+    private final String message;
+    private final EnumSet<ParameterName> missingParameters;
 }

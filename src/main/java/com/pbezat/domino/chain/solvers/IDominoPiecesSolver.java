@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IDominoPiecesSolver
 {
-    DominoChain solve(DominoPiece startingPiece, List<DominoPiece> dominoes);
+    DominoChain solve(final DominoPiece startingPiece, final List<DominoPiece> dominoes);
 }
