@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.pbezat.domino.chain.processors.IDominoChainConnector;
 import com.pbezat.domino.chain.solvers.IDominoPiecesSolver;
@@ -34,7 +33,7 @@ public class DominoPiecesSolver implements IDominoPiecesSolver
     }
 
     public DominoChain solve(DominoPiece startingPiece, List<DominoPiece> dominoes) {
-        Map<Integer, List<DominoChain>> chains = initChains(dominoes, startingPiece);
+        Map<Integer, List<DominoChain>> chains = initChains(startingPiece);
         List<DominoChain> allChains = new ArrayList<>();
 
         for (int chainSize = 1; chainSize <= dominoes.size(); chainSize++) {
@@ -64,10 +63,7 @@ public class DominoPiecesSolver implements IDominoPiecesSolver
 
             if (!currentChain.getChain().contains(dominoPiece)) {
                 DominoChain nextChain = chainConnector.connect(currentChain, dominoPiece);
-
-                if (calculateValue(nextChain) > calculateValue(currentChain)) {
-                    nextChainSet.add(nextChain);
-                }
+                nextChainSet.add(nextChain);
             }
         }
         return nextChainSet;
@@ -89,19 +85,14 @@ public class DominoPiecesSolver implements IDominoPiecesSolver
         return highestChain;
     }
 
-    private Map<Integer, List<DominoChain>> initChains(List<DominoPiece> dominoes, DominoPiece startingPiece) {
+    private Map<Integer, List<DominoChain>> initChains(DominoPiece startingPiece) {
         Map<Integer, List<DominoChain>> chains = new HashMap<>();
 
-        Stream<DominoChain> initialChainsStream = dominoes.stream()
-            .map(domino -> new DominoChain(startingPiece));
+        List<DominoChain> chainsList = new ArrayList<>();
+        chainsList.add(new DominoChain(startingPiece));
+        chainsList.add(new DominoChain(startingPiece.swap()));
 
-        Stream<DominoChain> initialReversedChainsStream = dominoes.stream()
-            .map(domino -> new DominoChain(startingPiece.swap()));
-
-        List<DominoChain> allInitialChains = Stream.concat(initialChainsStream, initialReversedChainsStream)
-            .collect(Collectors.toList());
-
-        chains.put(1, allInitialChains);
+        chains.put(1, chainsList);
 
         return chains;
     }
