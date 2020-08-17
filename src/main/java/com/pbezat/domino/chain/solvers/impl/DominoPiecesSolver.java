@@ -33,21 +33,18 @@ public class DominoPiecesSolver implements IDominoPiecesSolver
     }
 
     public DominoChain solve(final DominoPiece startingPiece, final List<DominoPiece> dominoes) {
-        final Map<Integer, List<DominoChain>> chains = initChains(startingPiece);
+        final List<DominoChain> initChains = initChains(startingPiece);
         final List<DominoChain> allChains = new ArrayList<>();
 
-        for (int chainSize = 1; chainSize <= dominoes.size(); chainSize++) {
-            final List<DominoChain> currentLengthChains = chains.get(chainSize);
+        List<DominoChain> workingChains = initChains;
 
-            final List<DominoChain> nextLengthChains = currentLengthChains.stream()
+        for (int chainSize = 1; chainSize <= dominoes.size(); chainSize++) {
+            workingChains = workingChains.stream()
                 .map((chain) -> findNextChains(chain, dominoes))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
 
-            allChains.addAll(nextLengthChains);
-
-            chains.remove(chainSize - 1);
-            chains.put(chainSize + 1, nextLengthChains);
+            allChains.addAll(workingChains);
         }
 
         final DominoChain highestValueChain = findHighestValueChain(allChains);
@@ -87,16 +84,12 @@ public class DominoPiecesSolver implements IDominoPiecesSolver
         return highestChain;
     }
 
-    private Map<Integer, List<DominoChain>> initChains(final DominoPiece startingPiece) {
-        final Map<Integer, List<DominoChain>> chains = new HashMap<>();
-
+    private List<DominoChain> initChains(final DominoPiece startingPiece) {
         final List<DominoChain> chainsList = new ArrayList<>();
         chainsList.add(new DominoChain(startingPiece));
         chainsList.add(new DominoChain(startingPiece.swap()));
 
-        chains.put(1, chainsList);
-
-        return chains;
+        return chainsList;
     }
 
 }
