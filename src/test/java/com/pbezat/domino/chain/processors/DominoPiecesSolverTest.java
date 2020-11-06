@@ -1,18 +1,21 @@
 package com.pbezat.domino.chain.processors;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.MockitoAnnotations;
+
 import com.pbezat.domino.chain.processors.impl.DominoChainConnector;
 import com.pbezat.domino.chain.processors.impl.DominoPieceCopyFactory;
 import com.pbezat.domino.chain.solvers.impl.DominoPiecesSolver;
 import com.pbezat.domino.chain.tos.DominoChain;
 import com.pbezat.domino.chain.tos.DominoPiece;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import com.pbezat.domino.chain.utils.DominoChainValueCalculator;
 
 public class DominoPiecesSolverTest
 {
@@ -65,5 +68,21 @@ public class DominoPiecesSolverTest
 
         //verification
         assertEquals(solvedChain.getChain().size(), 7);
+    }
+
+    @Test
+    public void test_solve_three_pieces() {
+    	final DominoPiece d1 = new DominoPiece(1, 2);
+    	final DominoPiece d2 = new DominoPiece(2, 3);
+    	final DominoPiece d3 = new DominoPiece(1, 4);
+
+    	final List<DominoPiece> dominoPieces = Arrays.asList(d2, d3);
+
+    	//real execution
+        final DominoChain solvedChain = solver.solve(d1, dominoPieces);
+
+        //verification
+        assertEquals(3, solvedChain.getChain().size());
+        assertEquals(3, DominoChainValueCalculator.calculateValue(solvedChain));
     }
 }
